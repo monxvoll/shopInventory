@@ -1,0 +1,25 @@
+<products>
+    <product>
+        <code>01</code>
+        <description>Mazorca</description>
+        <price>20.750</price>
+        <amount>50</amount>
+    </product>
+    <product>
+        <code>01</code>
+        <description>Lechuga</description>
+        <price>5.000</price>
+        <amount>30</amount>
+    </product>
+    <product>
+        <code>03</code>
+        <description>Tomates</description>
+        <price>3.500</price>
+        <amount>75</amount>
+    </product>
+   		<code>05</code>
+        <description>Aguacates</description>
+        <price>7.260</price>
+        <amount>20</amount>
+</products>
+
