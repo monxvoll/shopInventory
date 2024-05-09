@@ -5,8 +5,8 @@ public class Product {
 	//Se inicializan las variables
 	private String code;
 	private String description;
-	private double price;
-	private int amount;
+	private String price;
+	private String amount;
 	
 	public Product() {
 		
@@ -25,22 +25,22 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice( String price) {
 		this.price = price;
 	}
-	public int getAmount() {
+	public String getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 	
 	//Constructor de la clase
 	
-	public Product(String code, String description, double price, int amount) {
+	public Product(String code, String description,  String price,  String amount) {
 		this.code = code;
 		this.description = description;
 		this.price = price;

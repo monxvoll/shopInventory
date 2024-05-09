@@ -1,4 +1,4 @@
-package com.uptc.edu.app.store.conf;
+package com.uptc.edu.app.store;
 
 import java.io.FileInputStream;
 import java.io.IOException;

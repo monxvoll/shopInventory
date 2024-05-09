@@ -1,18 +1,22 @@
 package com.uptc.edu.app.store.runner;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.uptc.edu.app.store.enums.EtypeFile;
 import com.uptc.edu.app.store.model.Product;
-import com.uptc.edu.app.store.persistence.managementPersistence;
+import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 
 
 public class Main {
 	static Scanner sc= new Scanner(System.in);
 	public static void main (String [] args) {
 		
+		//Menu inicial
+	while (true) {
+	
 	System.out.println("BIENVENIDO");
 	System.out.println("*********************");
 	System.out.println("Menu: ");
@@ -21,9 +25,14 @@ public class Main {
 	System.out.println("3. Comprar productos");
 	System.out.println("4. Monitoreo");
 	System.out.println("5. Salir");
-	int op = sc.nextInt();
-	do {
-	switch (op) {
+	String op = sc.nextLine();
+	
+	
+		try {
+			
+	int option = Integer.parseInt(op);
+	
+	switch (option) {
 	case 1:
 		
 		break;
@@ -37,11 +46,22 @@ public class Main {
 	case 4:
 		
 		break;
+	case 5:
+		System.exit(0);
+		
+		//Default que se ejecuta si la opcion es un dato int diferente de (1 a 5)
+	default:
+		System.out.println("Por favor digite una opcion valida");
+			break;
 	}
-	}while (op>1 | op<5);
-	
+	    //Se maneja la excepcion
+		}catch(NumberFormatException e) {
+			System.out.println("Por favor digite una opcion valida");
+		}
+	}
 }
 
+	
 public void add() {
 	Map <String, Product> products = new HashMap<>();
 	System.out.println("¿Cuantos productos desea agregar?");
@@ -55,13 +75,13 @@ public void add() {
 		System.out.println("Escriba el nombre del producto");
 		aux.setDescription(sc.next());
 		System.out.println("Escriba el precio /u");
-		aux.setPrice(sc.nextDouble());
-		System.out.println("Escriba la cantidad de productos disponibles");
-		aux.setPrice(sc.nextDouble());
+		aux.setPrice(sc.nextLine());
+		System.out.println("Escriba el stock del producto");
+		aux.setAmount(sc.nextLine());
 		products.put(code, aux);	
 	}
-	managementPersistence per= new managementPersistence();
-	per.setproductos(products);
+	managementPersistenceProduct per = new managementPersistenceProduct();
+	per.setProducts(products);
 	per.dumpFile(EtypeFile.XML);
 	
 }
