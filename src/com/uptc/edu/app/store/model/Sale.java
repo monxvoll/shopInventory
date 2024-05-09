@@ -1,4 +1,4 @@
-package com.uptc.edu.app.store.logic;
+package com.uptc.edu.app.store.model;
 
 import java.time.LocalDate;
 

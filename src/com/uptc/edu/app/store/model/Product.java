@@ -1,20 +1,22 @@
-package com.uptc.edu.app.store.logic;
+package com.uptc.edu.app.store.model;
 
 public class Product {
 	
 	//Se inicializan las variables
-	private int code;
+	private String code;
 	private String description;
 	private double price;
 	private int amount;
 	
-	
+	public Product() {
+		
+	}
 	//Getters and Setters
 	
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public String getDescription() {
@@ -38,7 +40,7 @@ public class Product {
 	
 	//Constructor de la clase
 	
-	public Product(int code, String description, double price, int amount) {
+	public Product(String code, String description, double price, int amount) {
 		this.code = code;
 		this.description = description;
 		this.price = price;
