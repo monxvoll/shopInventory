@@ -1,11 +1,13 @@
 package com.uptc.edu.app.store.runner;
 
 import java.util.HashMap;
+
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.uptc.edu.app.store.enums.EtypeFile;
+import com.uptc.edu.app.store.logic.Menu;
 import com.uptc.edu.app.store.model.Product;
 import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 
@@ -13,7 +15,9 @@ import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 public class Main {
 	static Scanner sc= new Scanner(System.in);
 	public static void main (String [] args) {
-		
+	 Menu menu = new Menu();
+	
+	
 		//Menu inicial
 	while (true) {
 	
@@ -34,10 +38,10 @@ public class Main {
 	
 	switch (option) {
 	case 1:
-		
+		menu.add();
 		break;
 	case 2: 
-		
+		menu.showProducts();
 		break;
 	case 3:
 		
@@ -62,29 +66,7 @@ public class Main {
 }
 
 	
-public void add() {
-	Map <String, Product> products = new HashMap<>();
-	System.out.println("¿Cuantos productos desea agregar?");
-	int j= sc.nextInt();
-	String code;
-	for (int i=0; i<j; i++) {
-		Product aux= new Product();
-		System.out.println("Escriba el codigo del producto");
-		code = sc.next();
-		aux.setCode(code);
-		System.out.println("Escriba el nombre del producto");
-		aux.setDescription(sc.next());
-		System.out.println("Escriba el precio /u");
-		aux.setPrice(sc.nextLine());
-		System.out.println("Escriba el stock del producto");
-		aux.setAmount(sc.nextLine());
-		products.put(code, aux);	
-	}
-	managementPersistenceProduct per = new managementPersistenceProduct();
-	per.setProducts(products);
-	per.dumpFile(EtypeFile.XML);
-	
-}
+
 
 }
 
