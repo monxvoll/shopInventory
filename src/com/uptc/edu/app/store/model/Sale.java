@@ -38,6 +38,13 @@ public class Sale {
 		this.total = total;
 		this.fechaActual = fechaActual;
 	}
-	
+	/*//Metodo ToString
+		@Override
+	    public String toString() {
+	        return "CodigoProducto: " + productCode + " " +
+	               "Precio  " + total + " " +
+	               "Price: " + price + " " +
+	               "Amount: " + amount;
+	    }*/
 
 }

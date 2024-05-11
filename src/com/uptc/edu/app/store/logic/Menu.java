@@ -1,6 +1,9 @@
 package com.uptc.edu.app.store.logic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -11,50 +14,115 @@ import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 public class Menu {
 	static Scanner sc= new Scanner(System.in);
 	Map <String, Product> products = new HashMap<>();
-	
+	List<Double> shoppingElements = new ArrayList<>();
 	
 	//Metodo que añade productos 
-	public void add() {
-		
-			
 	
-		try {
-		System.out.println("¿Cuantos productos desea agregar?");
-			
-		String  cuantity = sc.next();
-		int lenght = Integer.parseInt(cuantity);
-		
-		String code;
-		for (int i=0; i<lenght; i++) {
-			Product aux= new Product();
-			System.out.println("Escriba el codigo del producto");
-			code = sc.next();
-			aux.setCode(code);
-			System.out.println("Escriba el nombre del producto");
-			aux.setDescription(sc.next());
-			System.out.println("Escriba el precio /u");
-			aux.setPrice(sc.next());
-			System.out.println("Escriba el stock del producto");
-			aux.setAmount(sc.next());
-			products.put(code, aux);	
-		}
-		}catch(NumberFormatException exp) {
-			System.out.println("Por favor digite una cantidad valida");
-		}
-		
-		managementPersistenceProduct per = new managementPersistenceProduct();
-		per.setProducts(products);
-		per.dumpFile(EtypeFile.XML);
-		
-	}
+	public void add() {
+	    boolean inputValid = false;
 
-	//Metodo que muestra los productos ya añadidos
+	    System.out.println("Escriba el nombre del producto");
+	    String descripcion = sc.next();
+	    
+	    
+	    while (!inputValid) {
+	        try {
+	            System.out.println("Escriba el codigo del producto");
+	            int code = sc.nextInt();
+	            sc.nextLine();
+
+	            System.out.println("Escriba el precio /u");
+	            double price = sc.nextDouble();
+	            sc.nextLine();
+
+	            System.out.println("Escriba el stock del producto");
+	            int stock = sc.nextInt();
+	            sc.nextLine();
+
+	            Product aux = new Product();
+	            aux.setDescription(descripcion);
+	            aux.setCode(String.valueOf(code));
+	            aux.setPrice(price);
+	            aux.setAmount(String.valueOf(stock));
+
+	            // Se añade el producto . Key - Value
+	            products.put(String.valueOf(code), aux);
+
+	            System.out.println("Producto añadido con éxito");
+	            inputValid = true;
+	        } catch (InputMismatchException InpEx) {
+	            System.out.println("Ingrese un precio válido (número)");
+	            sc.nextLine();
+	        }
+	    }
+	    
+	    // Entra a la persistencia solo si se agrego con exito
+	    if (inputValid) {
+	        managementPersistenceProduct per = new managementPersistenceProduct();
+	        per.setProducts(products);
+	        per.dumpFile(EtypeFile.XML);
+	    }
+	}
+	
+	
+
+	
+	//Metodo que muestra los productos ya añadidos imprimiendolos con un String builder
 	public void showProducts() {
 		if (products.isEmpty()) {
-			System.out.println("Uste aun no tiene productos registrados");
+			System.out.println("Usted aun no tiene productos registrados");
 		}else {
-			System.out.println(products.toString());
+			//itera los valores del map y los imprime
+			products.values().forEach(System.out::println);
 		}
 		
 	}
+	
+	
+	
+	//Metodo para comprar productos
+	public void shoppingCart() {
+	
+	    if (products.isEmpty()) {
+	        System.out.println("No tenemos productos en venta");
+	    } else {
+	        System.out.println("Los productos que tenemos son :");
+	        // Itera los valores del map y realiza las instrucciones 
+	        products.values().forEach(product -> {
+	            System.out.println("Name: " + product.getDescription());
+	            System.out.println("Price: " + product.getPrice());
+	            System.out.println("Codigo: " + product.getCode());
+	            System.out.println();
+	        });
+	        System.out.println("Por favor ingrese el codigo del producto que desee añadir");
+	        String code = sc.next();
+	        Product product = products.get(code);
+	        if ( product != null) {
+	        	shoppingElements.add(product.getPrice());
+	            System.out.println("Producto añadido al carrito con exito");
+	        } else {
+	            System.out.println("Codigo de producto no encontrado");
+	           
+	        }
+	        
+	    }
+	}
+	
+	
+	//Metodo que calcula el total de compra
+	public void totalPurchase() {
+		double totalSum =0;
+		if(shoppingElements.isEmpty()) {
+			System.out.println("Carrito de compras vacio");
+		}else {
+			//Recorre la lista de precios y va sumando
+			 for (Double precios : shoppingElements) {
+				 	totalSum = totalSum + precios;
+				 
+			}
+			 System.out.println("Su compra se realizo por el valor de : $"+ totalSum +" cop");	
+		} 
+	}
 }
+		
+

@@ -5,7 +5,7 @@ public class Product {
 	//Se inicializan las variables
 	private String code;
 	private String description;
-	private String price;
+	private double price;
 	private String amount;
 	
 	public Product() {
@@ -25,10 +25,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice( String price) {
+	public void setPrice( double price) {
 		this.price = price;
 	}
 	public String getAmount() {
@@ -46,5 +46,17 @@ public class Product {
 		this.price = price;
 		this.amount = amount;
 	}
+
+	//Metodo ToString
+	@Override
+    public String toString() {
+        return "Code: " + code + " " +
+               "Description: " + description + " " +
+               "Price: " + price + " " +
+               "Amount: " + amount;
+    }
+	
+	
+	
 
 }
