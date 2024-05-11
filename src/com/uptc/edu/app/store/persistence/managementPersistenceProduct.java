@@ -90,6 +90,12 @@ public class managementPersistenceProduct extends FilePlain implements Actions {
 		this.mapCodeProduct = mapCodeProduct;
 	}
 
+	@Override
+	public void loadStudent(EtypeFile eTypeFile) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 
