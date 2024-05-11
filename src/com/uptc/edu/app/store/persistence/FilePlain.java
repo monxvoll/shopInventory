@@ -39,8 +39,8 @@ public class FilePlain {
 	 
 	 
 	     protected void writeFile(String content, String string){
-	         try (BufferedWriter writer = new BufferedWriter(new FileWriter(confValue.getRuta().concat(confValue.getNombreArchivoXML())))) {
-	             writer.write(content);
+	         try (BufferedWriter writer = new BufferedWriter(new FileWriter(content))) {
+	             writer.write(string);
 	         } catch (IOException e) {
 	             System.out.println("Error al escribir en el archivo:" + e.getMessage());
 	         }

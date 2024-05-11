@@ -1,1 +1,8 @@
-
+<XML version="1.0" encoding="UTF-8"> 
+<product>
+<code>123</code>
+<name>as</name>
+<price>2</price>
+<amount>2</amount>
+</product>
+</XML>

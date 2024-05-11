@@ -10,7 +10,8 @@ public class Config {
 
 	 private String ruta;
 	 
-	 private String nombreArchivo;
+	 private String nombreArchivoXML;
+	 private String nombreArchivoTXT;
 	 
 	
 
@@ -23,12 +24,24 @@ public class Config {
 
 	
 	public String getNombreArchivoXML() {
-			return nombreArchivo;
+			return nombreArchivoXML;
 		}
 
-	public void setNombreArchivo(String nombreArchivo) {
-			this.nombreArchivo = nombreArchivo;
+	public void setNombreArchivoXML(String nombreArchivo) {
+			this.nombreArchivoXML = nombreArchivo;
 		}
+	
+	
+	public String getNombreArchivoTXT() {
+		return nombreArchivoTXT;
+	}
+
+
+	public void setNombreArchivoTXT(String nombreArchivoTXT) {
+		this.nombreArchivoTXT = nombreArchivoTXT;
+	}
+
+
 	public static Config getInfoFile() {
 		return infoFile;
 	}
@@ -55,10 +68,11 @@ public class Config {
 	//El constructor privado evita que se creen instancias con new
     private Config() {
         this.propiedades = new Properties();
-        try (FileInputStream entrada = new FileInputStream("resources/conf/appconf.properties")) {
+        try (FileInputStream entrada = new FileInputStream("resources/conf/app.properties")) {
             propiedades.load(entrada);
-            this.ruta = propiedades.getProperty("ruta.archivo.txt");
-            this.nombreArchivo = propiedades.getProperty("nombre.archivo.txt");
+            this.ruta = propiedades.getProperty("app.file.path.txt");
+            this.nombreArchivoXML = propiedades.getProperty("app.file.name.xml");
+            this.nombreArchivoTXT = propiedades.getProperty("app.file.name.txt");
         } catch (IOException ex) {
             System.err.println("Error al cargar el archivo properties de configuración: "+ ex.getMessage());
         }
