@@ -71,22 +71,6 @@ public class managementPersistenceProduct extends FilePlain implements Actions {
 		this.writeFile(rutaArchivo, lines.toString());
 	}
 	
-	/*public void loadFilePlain() {
-        List<String> contentInLine = this.reader();
-        contentInLine.forEach(row -> {
-            StringTokenizer tokens = new StringTokenizer(row, CommonConstants.SEMI_COLON);
-            while (tokens.hasMoreElements()) {
-                String code = tokens.nextToken();
-                String description = tokens.nextToken();
-                String price = tokens.nextToken();
-                //String amount = tokens.nextToken();
-                
-                
-              
-                arrayListSales.add(new Sale(code,price,LocalDate.now(), LocalTime.now()));
-            }
-        });
-    }*/
 	
 	
 	//Setters and Getters

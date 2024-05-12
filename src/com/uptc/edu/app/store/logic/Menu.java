@@ -35,13 +35,32 @@ public class Menu {
 
 	    while (!inputValid) {
 	        try {
-	            System.out.println("Escriba el nombre del producto");
+	            System.out.print("Escriba el nombre del producto : ");
+	            
 	            String description = sc.nextLine();
+	            while(description ==null|| description == "") {
+	          
+	            	System.out.println("Por favor digite un nombre valido");
+	            	description = sc.nextLine();
+	            
+	            }
+	            System.out.print("Escriba el código del producto : ");
+           	 	int code = Integer.parseInt(sc.nextLine());
+	           
+	            
+	            if(products.get(String.valueOf(code))!=null) {
+	            	 System.out.println("Este producto ya existe digite otro diferente");
+	            	 
+	            	 while(products.get(String.valueOf(code))!=null) {
+		            		System.out.print("Escriba el codigo del producto : ");
+		            		code = Integer.parseInt(sc.nextLine());
+		           }
+	           }
+	            		
+	            	
+	       
 
-	            System.out.println("Escriba el código del producto");
-	            int code = Integer.parseInt(sc.nextLine());
-
-	            System.out.println("Escriba el precio /u");
+	            System.out.print("Escriba el precio /u : ");
 	            String priceInput = sc.nextLine();
 
 	            // Reemplazar punto  del precio con  una coma
@@ -51,7 +70,7 @@ public class Menu {
 	            DecimalFormat df = new DecimalFormat("#,###.###");
 	            double price = df.parse(priceInput).doubleValue();
 
-	            System.out.println("Escriba el stock del producto");
+	            System.out.print("Escriba el stock del producto :");
 	            int stock = Integer.parseInt(sc.nextLine());
 
 	            Product aux = new Product();
@@ -67,6 +86,7 @@ public class Menu {
 	            inputValid = true;
 	        } catch (Exception ex) {
 	            System.out.println("Por favor ingrese un formato válido para el (código, precio y stock).");
+	            
 	        }
 	    }
 	    
@@ -108,7 +128,7 @@ public class Menu {
 	            System.out.println("Codigo: " + product.getCode());
 	            System.out.println();
 	        });
-	        System.out.println("Por favor ingrese el código del producto que desee añadir");
+	        System.out.print("Por favor ingrese el código del producto que desee añadir : ");
 	        String code = sc.nextLine();
 	        Product product = products.get(code);
 	        
