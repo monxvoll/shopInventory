@@ -2,19 +2,16 @@ package com.uptc.edu.app.store.persistence;
 
 import java.io.BufferedReader;
 
+
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
-
-import com.uptc.edu.app.store.Configuration;
 import com.uptc.edu.app.store.confi.Config;
 import com.uptc.edu.app.store.constants.CommonConstants;
 import com.uptc.edu.app.store.model.Product;

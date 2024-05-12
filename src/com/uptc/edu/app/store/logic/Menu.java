@@ -2,15 +2,14 @@ package com.uptc.edu.app.store.logic;
 
 
 import java.text.DecimalFormat;
+
 import java.time.LocalDate;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Scanner;
 
 

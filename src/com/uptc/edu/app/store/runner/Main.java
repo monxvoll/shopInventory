@@ -1,16 +1,10 @@
 
 package com.uptc.edu.app.store.runner;
 
-import java.util.HashMap;
-
 import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Scanner;
 
-import com.uptc.edu.app.store.enums.EtypeFile;
 import com.uptc.edu.app.store.logic.Menu;
-import com.uptc.edu.app.store.model.Product;
-import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 
 
 public class Main {

@@ -1,6 +1,7 @@
 package com.uptc.edu.app.store.model;
 
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 public class Sale {
