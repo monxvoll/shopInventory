@@ -1,8 +1,15 @@
 <XML version="1.0" encoding="UTF-8"> 
 <product>
-<code>1234</code>
-<name>asd</name>
-<price>10000.0</price>
-<amount>12</amount>
+<code>123</code>
+<name>arroz</name>
+<price>2000</price>
+<amount>15</amount>
+</product>
+</XML><XML version="1.0" encoding="UTF-8"> 
+<product>
+<code>123</code>
+<name>arroz</name>
+<price>2000</price>
+<amount>15</amount>
 </product>
 </XML>

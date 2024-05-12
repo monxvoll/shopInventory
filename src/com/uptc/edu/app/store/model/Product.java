@@ -5,7 +5,7 @@ public class Product {
 	//Se inicializan las variables
 	private String code;
 	private String description;
-	private double price;
+	private String price;
 	private String amount;
 	
 	public Product() {
@@ -25,10 +25,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice( double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getAmount() {

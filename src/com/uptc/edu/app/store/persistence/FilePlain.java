@@ -23,7 +23,7 @@ public class FilePlain {
 
 	     StringBuilder contenido = new StringBuilder();
 	     try {
-	         FileReader fr = new FileReader(confValue.getRuta().concat(confValue.getNombreArchivoXML()));
+	         FileReader fr = new FileReader(confValue.getRuta().concat(confValue.getNombreArchivoTXT()));
 	         BufferedReader br = new BufferedReader(fr);
 	         String linea;
 	         while ((linea = br.readLine()) != null) {
@@ -38,14 +38,14 @@ public class FilePlain {
 	 }
 	 
 	 
-	     protected void writeFile(String content, String string){
-	         try (BufferedWriter writer = new BufferedWriter(new FileWriter(content))) {
-	             writer.write(string);
-	         } catch (IOException e) {
-	             System.out.println("Error al escribir en el archivo:" + e.getMessage());
-	         }
+	 protected void writeFile(String rutaNombre, String string){
+		    try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaNombre, true))) {
+		        writer.write(string);
+		    } catch (IOException e) {
+		        System.out.println("Error al escribir en el archivo:" + e.getMessage());
+		    }
+		}
 
-	     }
 
 	    protected List<String> reader(){
 	        List<String> output = new ArrayList<>();
@@ -61,6 +61,11 @@ public class FilePlain {
 	        file.forEach(record -> strContent.append(record).append(CommonConstants.LINE_BREAK));
 	        writeFile(strContent.toString(), null);
 	    }
+	    protected void writer(String rutaNombre, List<String> file){
+    		StringBuilder strContent = new StringBuilder();
+    		file.forEach(record -> strContent.append(record).append(CommonConstants.LINE_BREAK));
+    		writeFile(rutaNombre, strContent.toString());
+    	}
 	}
 
 

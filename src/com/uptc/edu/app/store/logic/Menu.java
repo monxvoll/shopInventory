@@ -1,5 +1,7 @@
 package com.uptc.edu.app.store.logic;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -9,12 +11,15 @@ import java.util.Scanner;
 
 import com.uptc.edu.app.store.enums.EtypeFile;
 import com.uptc.edu.app.store.model.Product;
+import com.uptc.edu.app.store.model.Sale;
 import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 
 public class Menu {
 	static Scanner sc= new Scanner(System.in);
 	Map <String, Product> products = new HashMap<>();
-	List<Double> shoppingElements = new ArrayList<>();
+	List<String> shoppingElements = new ArrayList<>();
+	
+	
 	
 	//Metodo que añade productos 
 	
@@ -32,7 +37,7 @@ public class Menu {
 	            sc.nextLine();
 
 	            System.out.println("Escriba el precio /u");
-	            double price = sc.nextDouble();
+	            String price = sc.next();
 	            sc.nextLine();
 
 	            System.out.println("Escriba el stock del producto");
@@ -82,7 +87,7 @@ public class Menu {
 	
 	//Metodo para comprar productos
 	public void shoppingCart() {
-	
+		
 	    if (products.isEmpty()) {
 	        System.out.println("No tenemos productos en venta");
 	    } else {
@@ -100,6 +105,14 @@ public class Menu {
 	        if ( product != null) {
 	        	shoppingElements.add(product.getPrice());
 	            System.out.println("Producto añadido al carrito con exito");
+	            product.setAmount(String.valueOf(Integer.parseInt(product.getAmount())-1));
+	            Sale sale= new Sale(product.getCode(),product.getPrice(), LocalDate.now(), LocalTime.now());
+	            List<Sale> sales= new ArrayList<Sale>();
+	            managementPersistenceProduct mana= new managementPersistenceProduct();
+	            sales.add(sale);
+	            mana.setSales(sales);
+	            mana.dumpFile(EtypeFile.PLAIN);
+	            System.out.println(sales.toString());
 	        } else {
 	            System.out.println("Codigo de producto no encontrado");
 	           
@@ -116,11 +129,14 @@ public class Menu {
 			System.out.println("Carrito de compras vacio");
 		}else {
 			//Recorre la lista de precios y va sumando
-			 for (Double precios : shoppingElements) {
-				 	totalSum = totalSum + precios;
+			 for (String precios : shoppingElements) {
+				 	totalSum = totalSum + Integer.parseInt(precios);
 				 
 			}
+			 
 			 System.out.println("Su compra se realizo por el valor de : $"+ totalSum +" cop");	
+			 totalSum=0;
+			 shoppingElements.clear();
 		} 
 	}
 }
