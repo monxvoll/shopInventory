@@ -29,8 +29,7 @@ public class Main {
 	System.out.println("2. Mostrar productos del inventario");
 	System.out.println("3. Añadir productos al carrito de compras");
 	System.out.println("4. Finalizar compra");
-	System.out.println("5. Monitoreo");
-	System.out.println("6. Salir");
+	System.out.println("5. Salir");
 	String op = sc.nextLine();
 	
 	
@@ -52,20 +51,17 @@ public class Main {
 			menu.totalPurchase();
 			break;
 		case 5:
-			System.out.println("En construccion");
-			break;
-		case 6:
 			System.out.println("Gracias por usar nuestro sistema. ¡Hasta luego!");
 			System.exit(0);
-			
+
 			//Default que se ejecuta si la opcion es una variable int diferente de (1 a 5)
 		default:
 			System.out.println("Por favor digite una opcion valida");
 				break;
 		}
 	    //Se maneja la excepcion del parseo
-		}catch(InputMismatchException InpEx) {
-			System.out.println("Por favor digite una opcion valida (numero)");
+		} catch (InputMismatchException | NumberFormatException nmbr) {
+		    System.out.println("Por favor digite una opción válida (número)");
 		}
 		}
 	}

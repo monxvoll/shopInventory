@@ -1,14 +1,12 @@
 package com.uptc.edu.app.store.persistence;
 
 import java.io.File;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -51,16 +49,8 @@ public class managementPersistenceProduct extends FilePlain implements Actions {
 		}
 	}
 	
-	/*public void loadProduct (EtypeFile eTypeFile) {
-		if(EtypeFile.PLAIN.equals(eTypeFile)) {
-			this.loadFilePlain();
-		}
-		if(EtypeFile.XML.equals(eTypeFile)) {
-			this.loadFileXML();
-		}
-	}*/
-	
-	
+
+
 	
 	
 	public void dumpFileXML() {
