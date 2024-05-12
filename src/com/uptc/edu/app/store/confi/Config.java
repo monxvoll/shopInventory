@@ -12,6 +12,7 @@ public class Config {
 	 
 	 private String nombreArchivoXML;
 	 private String nombreArchivoTXT;
+	 private String stock;
 	 
 	
 
@@ -65,6 +66,19 @@ public class Config {
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
+	
+	
+	
+	public String getStock() {
+		return stock;
+	}
+
+
+	public void setStock(String stock) {
+		this.stock = stock;
+	}
+
+
 	//El constructor privado evita que se creen instancias con new
     private Config() {
         this.propiedades = new Properties();
@@ -73,6 +87,7 @@ public class Config {
             this.ruta = propiedades.getProperty("app.file.path.txt");
             this.nombreArchivoXML = propiedades.getProperty("app.file.name.xml");
             this.nombreArchivoTXT = propiedades.getProperty("app.file.name.txt");
+            this.stock= propiedades.getProperty("stock");
         } catch (IOException ex) {
             System.err.println("Error al cargar el archivo properties de configuración: "+ ex.getMessage());
         }

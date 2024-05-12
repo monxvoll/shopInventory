@@ -3,22 +3,47 @@ package com.uptc.edu.app.store.persistence;
 import java.io.BufferedReader;
 
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.StringTokenizer;
 
 import com.uptc.edu.app.store.Configuration;
 import com.uptc.edu.app.store.confi.Config;
 import com.uptc.edu.app.store.constants.CommonConstants;
+import com.uptc.edu.app.store.model.Product;
 
 public class FilePlain {
 
 	 private   Config confValue = Config.getInstance();
-
-	//Metodo encargado de leer el archivo  que a su vez agrega el salto de linea
+	 
+	 
+	public String alertStock(Product pro) {
+		Properties propi= new Properties();
+		 try {
+			FileInputStream entrada = new FileInputStream("resources/conf/app.properties");
+ 			propi.load(entrada);
+ 			entrada.close();
+ 			}
+		 catch(IOException e) {
+			 e.printStackTrace();
+		 }
+		 
+		 int limite = Integer.parseInt(propi.getProperty("stock"));
+		 if (Integer.parseInt(pro.getAmount())<=limite) {
+			 return "ALERTA: quedan menos de 5 productos del codigo: "+pro.getCode();
+		 }
+		return "**********";
+		
+	}
+	 
+	 //Metodo encargado de leer el archivo  que a su vez agrega el salto de linea
 	 private String readFile() {
 
 	     StringBuilder contenido = new StringBuilder();

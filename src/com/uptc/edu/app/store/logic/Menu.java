@@ -1,5 +1,6 @@
 package com.uptc.edu.app.store.logic;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -7,18 +8,22 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
+
+
 
 import com.uptc.edu.app.store.enums.EtypeFile;
 import com.uptc.edu.app.store.model.Product;
 import com.uptc.edu.app.store.model.Sale;
+import com.uptc.edu.app.store.persistence.FilePlain;
 import com.uptc.edu.app.store.persistence.managementPersistenceProduct;
 
 public class Menu {
 	static Scanner sc= new Scanner(System.in);
 	Map <String, Product> products = new HashMap<>();
 	List<String> shoppingElements = new ArrayList<>();
-	
+	FilePlain file = new FilePlain();
 	
 	
 	//Metodo que añade productos 
@@ -87,6 +92,7 @@ public class Menu {
 	
 	//Metodo para comprar productos
 	public void shoppingCart() {
+		Properties pro = new Properties();
 		
 	    if (products.isEmpty()) {
 	        System.out.println("No tenemos productos en venta");
@@ -109,10 +115,11 @@ public class Menu {
 	            Sale sale= new Sale(product.getCode(),product.getPrice(), LocalDate.now(), LocalTime.now());
 	            List<Sale> sales= new ArrayList<Sale>();
 	            managementPersistenceProduct mana= new managementPersistenceProduct();
+	           System.out.println(file.alertStock(product));
 	            sales.add(sale);
 	            mana.setSales(sales);
+	            
 	            mana.dumpFile(EtypeFile.PLAIN);
-	            System.out.println(sales.toString());
 	        } else {
 	            System.out.println("Codigo de producto no encontrado");
 	           
